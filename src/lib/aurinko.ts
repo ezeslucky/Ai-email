@@ -1,6 +1,6 @@
 'use server'
 import axios from 'axios'
-// import type { EmailMessage } from './types';
+import type { EmailMessage } from './types';
 import { auth } from '@clerk/nextjs/server';
 // import { getSubscriptionStatus } from './stripe-actions';
 import { db } from '@/server/db';
@@ -18,13 +18,23 @@ export const getAurinkoAuthorizationUrl = async (serviceType: 'Google' | 'Office
 
     if (!user) throw new Error('User not found')
 
-   
+    // const isSubscribed = await getSubscriptionStatus()
 
     const accounts = await db.account.count({
         where: { userId }
     })
 
-    
+    // if (user.role === 'user') {
+    //     if (isSubscribed) {
+    //         if (accounts >= PRO_ACCOUNTS_PER_USER) {
+    //             throw new Error('You have reached the maximum number of accounts for your subscription')
+    //         }
+    //     } else {
+    //         if (accounts >= FREE_ACCOUNTS_PER_USER) {
+    //             throw new Error('You have reached the maximum number of accounts for your subscription')
+    //         }
+    //     }
+    // }
 
 
     const params = new URLSearchParams({
@@ -66,7 +76,6 @@ export const getAurinkoToken = async (code: string) => {
     }
 }
 
-
 export const getAccountDetails = async (accessToken: string) => {
     try {
         const response = await axios.get('https://api.aurinko.io/v1/account', {
@@ -83,6 +92,27 @@ export const getAccountDetails = async (accessToken: string) => {
             console.error('Error fetching account details:', error.response?.data);
         } else {
             console.error('Unexpected error fetching account details:', error);
+        }
+        throw error;
+    }
+}
+
+export const getEmailDetails = async (accessToken: string, emailId: string) => {
+    try {
+        const response = await axios.get<EmailMessage>(`https://api.aurinko.io/v1/email/messages/${emailId}`, {
+            params: {
+                loadInlines: true
+            },
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+        return response.data
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            console.error('Error fetching email details:', error.response?.data);
+        } else {
+            console.error('Unexpected error fetching email details:', error);
         }
         throw error;
     }

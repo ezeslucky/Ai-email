@@ -16,6 +16,8 @@ import {
     TabsTrigger,
   } from "@/components/ui/tabs"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { AccountSwitcher } from "./account-switcher"
+import SideBar from "./sidebar"
 // import { AccountSwitcher } from "@/app/mail/components/account-switcher"
 // import { ThreadDisplay } from "./thread-display"
 // import { ThreadList } from "./thread-list"
@@ -81,10 +83,10 @@ export function Mail({
                 isCollapsed ? "h-[52px]" : "px-2"
               )}
             >
-              {/* <AccountSwitcher isCollapsed={isCollapsed} /> */}
+              <AccountSwitcher isCollapsed={isCollapsed} />
             </div>
             <Separator />
-            {/* <SideBar isCollapsed={isCollapsed} /> */}
+            <SideBar isCollapsed={isCollapsed} />
             <div className="flex-1"></div>
             {/* <AskAI isCollapsed={isCollapsed} /> */}
           </div>
