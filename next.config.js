@@ -1,15 +1,19 @@
-
-await import("./src/env.js");
-
-/** @type {import("next").NextConfig} */
-const config = {
-    typescript:{
-        ignoreBuildErrors: true,
-
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    images: {
+      remotePatterns: [
+        {
+          hostname: "lh3.googleusercontent.com",
+        },
+      ],
     },
-    eslint:{
-        ignoreDuringBuilds:true,
+    typescript: {
+      ignoreBuildErrors: true,
     },
-};
-
-export default config;
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
+    reactStrictMode: false,
+  };
+  
+  export default nextConfig;
