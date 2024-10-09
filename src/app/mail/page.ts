@@ -1,9 +1,14 @@
+" use client"
 
+import React from 'react'
 
-export default function MailPage() {
-
-
-  return (
-    
-  )
+function MailBox() {
+//   return (
+//     <div: >
+      
+//     </div>
+//   )
 }
+
+export default MailBox
+
