@@ -1,5 +1,5 @@
 import { getAccountDetails, getAurinkoToken } from "@/lib/aurinko";
-// import { waitUntil } from '@vercel/functions'
+import { waitUntil } from '@vercel/functions'
 import { db } from "@/server/db";
 import { auth } from "@clerk/nextjs/server";
 import axios from "axios";
@@ -18,7 +18,7 @@ export const GET = async (req: NextRequest) => {
     if (!token) return NextResponse.json({ error: "Failed to fetch token" }, { status: 400 });
 
 
-    
+
     const accountDetails = await getAccountDetails(token.accessToken)
     await db.account.upsert({
         where: { id: token.accountId.toString() },
@@ -34,14 +34,14 @@ export const GET = async (req: NextRequest) => {
             token: token.accessToken,
         }
     })
-    // waitUntil(
+    waitUntil(
 
-    //     axios.post(`${process.env.NEXT_PUBLIC_URL}/api/initial-sync`, { accountId: token.accountId.toString(), userId }).then((res) => {
-    //         console.log(res.data)
-    //     }).catch((err) => {
-    //         console.log(err.response.data)
-    //     })
-    // )
+        axios.post(`${process.env.NEXT_PUBLIC_URL}/api/initial-sync`, { accountId: token.accountId.toString(), userId }).then((res) => {
+            console.log(res.data)
+        }).catch((err) => {
+            console.log(err.response.data)
+        })
+    )
 
     return NextResponse.redirect(new URL('/mail', req.url))
 }
