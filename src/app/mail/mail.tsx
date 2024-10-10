@@ -18,11 +18,12 @@ import {
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { AccountSwitcher } from "./account-switcher"
 import SideBar from "./sidebar"
-// import { AccountSwitcher } from "@/app/mail/components/account-switcher"
+import { useLocalStorage } from "usehooks-ts"
+
 // import { ThreadDisplay } from "./thread-display"
 // import { ThreadList } from "./thread-list"
 // import { useLocalStorage } from "usehooks-ts"
-// import SideBar from "./sidebar"
+
 // import SearchBar, { isSearchingAtom } from "./search-bar"
 // import { useAtom } from "jotai"
 // import AskAI from "./ask-ai"
@@ -38,7 +39,7 @@ export function Mail({
   defaultCollapsed = false,
   navCollapsedSize,
 }: MailProps) {
-//   const [done, setDone] = useLocalStorage('ai-email-done', false)
+  const [done, setDone] = useLocalStorage('ai-email-done', false)
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed)
 
 
