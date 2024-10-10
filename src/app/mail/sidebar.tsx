@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-
+import { Nav } from './nav'
 
 import {
     AlertCircle,
@@ -17,7 +17,6 @@ import {
 import { usePathname } from 'next/navigation'
 import { useLocalStorage } from 'usehooks-ts'
 import { api } from '@/trpc/react'
-import { Nav } from './nav'
 type Props = { isCollapsed: boolean }
 
 const SideBar = ({ isCollapsed }: Props) => {
