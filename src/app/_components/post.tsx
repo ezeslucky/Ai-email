@@ -5,12 +5,15 @@ import { useState } from "react";
 import { api } from "@/trpc/react";
 
 export function LatestPost() {
+  //@ts-ignore
   const [latestPost] = api.post.getLatest.useSuspenseQuery();
 
   const utils = api.useUtils();
   const [name, setName] = useState("");
+    //@ts-ignore
   const createPost = api.post.create.useMutation({
     onSuccess: async () => {
+        //@ts-ignore
       await utils.post.invalidate();
       setName("");
     },
