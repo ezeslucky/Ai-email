@@ -2,9 +2,9 @@
 import axios from 'axios'
 import type { EmailMessage } from './types';
 import { auth } from '@clerk/nextjs/server';
-// import { getSubscriptionStatus } from './stripe-actions';
+import { getSubscriptionStatus } from './stripe-actions';
 import { db } from '@/server/db';
-// import { FREE_ACCOUNTS_PER_USER, PRO_ACCOUNTS_PER_USER } from '@/app/constants';
+import { FREE_ACCOUNTS_PER_USER, PRO_ACCOUNTS_PER_USER } from '@/app/constants';
 
 export const getAurinkoAuthorizationUrl = async (serviceType: 'Google' | 'Office365') => {
     const { userId } = await auth()
@@ -18,23 +18,23 @@ export const getAurinkoAuthorizationUrl = async (serviceType: 'Google' | 'Office
 
     if (!user) throw new Error('User not found')
 
-    // const isSubscribed = await getSubscriptionStatus()
+    const isSubscribed = await getSubscriptionStatus()
 
     const accounts = await db.account.count({
         where: { userId }
     })
 
-    // if (user.role === 'user') {
-    //     if (isSubscribed) {
-    //         if (accounts >= PRO_ACCOUNTS_PER_USER) {
-    //             throw new Error('You have reached the maximum number of accounts for your subscription')
-    //         }
-    //     } else {
-    //         if (accounts >= FREE_ACCOUNTS_PER_USER) {
-    //             throw new Error('You have reached the maximum number of accounts for your subscription')
-    //         }
-    //     }
-    // }
+    if (user.role === 'user') {
+        if (isSubscribed) {
+            if (accounts >= PRO_ACCOUNTS_PER_USER) {
+                throw new Error('You have reached the maximum number of accounts for your subscription')
+            }
+        } else {
+            if (accounts >= FREE_ACCOUNTS_PER_USER) {
+                throw new Error('You have reached the maximum number of accounts for your subscription')
+            }
+        }
+    }
 
 
     const params = new URLSearchParams({

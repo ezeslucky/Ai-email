@@ -80,10 +80,10 @@ export function AccountSwitcher({
             <SelectItem key={account.id} value={account.id}>
               <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
                 {/* {account.icon} */}
-                 {account.emailAddress}
-              </div> 
+                {account.emailAddress}
+              </div>
             </SelectItem>
-          ))} 
+          ))}
           <div onClick={async (e) => {
             try {
               const url = await getAurinkoAuthorizationUrl('Google')

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
-
+import { useThread } from "@/app/mail/use-thread"
 import { api, type RouterOutputs } from "@/trpc/react"
 import { useAtom } from "jotai"
 import useVim from "./kbar/use-vim"
@@ -17,7 +17,6 @@ import useThreads from "../use-threads"
 import { isSearchingAtom } from "./search-bar"
 
 import { format } from "date-fns";
-import { useThread } from "./use-threads";
 
 export function ThreadList() {
   const { threads, isFetching } = useThreads();

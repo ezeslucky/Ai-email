@@ -1,4 +1,4 @@
-import type { EmailHeader, EmailMessage, SyncResponse, SyncUpdatedResponse } from './types';
+import type { EmailHeader, EmailMessage, SyncResponse, SyncUpdatedResponse } from '@/lib/types';
 import { db } from '@/server/db';
 import axios from 'axios';
 import { syncEmailsToDatabase } from './sync-to-db';
@@ -136,7 +136,7 @@ class Account {
                 }
             }
 
-            console.log('Initial sync complete. Total emails:', allEmails.length);
+            // console.log('Initial sync complete. Total emails:', allEmails.length);
 
             // Store the nextDeltaToken for future incremental syncs
 

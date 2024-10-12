@@ -6,7 +6,7 @@ import { db } from "@/server/db";
 import { getEmailDetails } from "@/lib/aurinko";
 import type { Prisma } from "@prisma/client";
 import { emailAddressSchema } from "@/lib/types";
-// import { FREE_CREDITS_PER_DAY } from "@/app/constants";
+import { FREE_CREDITS_PER_DAY } from "@/app/constants";
 
 export const authoriseAccountAccess = async (accountId: string, userId: string) => {
     const account = await db.account.findFirst({
@@ -344,9 +344,9 @@ export const mailRouter = createTRPCRouter({
                 userId: ctx.auth.userId
             }, select: { count: true }
         })
-        // const remainingCredits = FREE_CREDITS_PER_DAY - (chatbotInteraction?.count || 0)
+        const remainingCredits = FREE_CREDITS_PER_DAY - (chatbotInteraction?.count || 0)
         return {
-            // remainingCredits
+            remainingCredits
         }
     }),
 });
