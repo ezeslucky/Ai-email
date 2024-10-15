@@ -29,7 +29,7 @@ export async function GET(request: Request) {
         const { grantId } = response;
 
         const token = crypto.randomUUID()
-
+//@ts-ignore
         await db.grant.create({
             data: {
                 id: grantId,

@@ -31,6 +31,8 @@ const AIComposeButton = (props: Props) => {
     const { account, threads } = useThreads()
     const [threadId] = useThread();
     const thread = threads?.find(t => t.id === threadId)
+
+    
     const aiGenerate = async (prompt: string) => {
         let context: string | undefined = ''
         if (!props.isComposing) {

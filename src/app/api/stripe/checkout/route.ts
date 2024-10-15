@@ -54,6 +54,7 @@ export async function GET(request: NextRequest) {
         }
 
         const stripeSubscription = await db.stripeSubscription.create({
+            //@ts-ignore
             data: {
                 subscriptionId: subscriptionId,
                 productId: productId,

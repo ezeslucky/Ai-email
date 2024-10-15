@@ -20,3 +20,6 @@ export async function getEmbeddings(text: string) {
         throw error;
     }
 }
+
+
+

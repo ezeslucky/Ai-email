@@ -95,7 +95,7 @@ const AskAI = ({ isCollapsed }: { isCollapsed: boolean }) => {
                                 }
                             })} className='px-2 py-1 bg-gray-800 text-gray-200 rounded-md text-xs'>When is my next flight?</span>
                             <span onClick={() => handleInputChange({
-                                //@ts-ignore
+                                //@ts-ignore 
                                 target: {
                                     value: 'When is my next meeting?'
                                 }
