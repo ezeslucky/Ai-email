@@ -1,6 +1,7 @@
 import { NodeViewWrapper, NodeViewContent } from '@tiptap/react'
 import React from 'react'
 
+//@ts-ignore
 export default props => {
     return (
         <NodeViewWrapper as='span'>

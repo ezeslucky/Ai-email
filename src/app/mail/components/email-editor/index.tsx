@@ -155,7 +155,10 @@ const EmailEditor = ({ toValues, ccValues, subject, setSubject, to, handleSend, 
                     </kbd>{" "}
                     for AI autocomplete
                 </span>
-                <Button onClick={async () => { editor?.commands.clearContent(); await handleSend(value) }} isLoading={isSending}>
+                
+                <Button onClick={async () => { editor?.commands.clearContent(); await handleSend(value) }} 
+                //@ts-ignore
+                isLoading={isSending}>
                     Send
                 </Button>
             </div>

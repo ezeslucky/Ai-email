@@ -28,14 +28,14 @@ const TagInput: React.FC<TagInputProps> = ({ suggestions, defaultValues = [], la
         <span className='ml-3 text-sm text-gray-500'>{label}</span>
         <Select
             value={value}
-            // @ts-ignore
+          //@ts-ignore
             onChange={onChange}
             className='w-full flex-1'
             isMulti
             onInputChange={setInput}
             defaultValue={defaultValues}
             placeholder={''}
-            // @ts-ignore
+           //@ts-ignore
             options={input ? options.concat({
                 label: (
                     <span className='flex items-center gap-2'>
